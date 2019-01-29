@@ -82,7 +82,9 @@
                                 <h2 style="text-align: center;">Messages</h2>
                             </div>
                             <div class="modal-body">
-                                <p>{!! $document->messages !!}</p>
+                                @foreach($documents as $document)
+                                    <p>{!! $document->messages !!}</p>
+                                @endforeach
                             </div>
                         </div>
                     </div>

@@ -32,4 +32,5 @@
             {!! Form::close() !!}
         </div>
     </article>
+    <br/>
 @endforeach
