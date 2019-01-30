@@ -44,12 +44,6 @@ class AdminController extends Controller
         $user_detail = UserDetail::with(['edu_backgrounds','work_experience'])->get();
         $documents = Document::all();
         
-        // foreach ($user_details as $details) {
-        //     echo $details->full_name;
-        //     foreach ($details->edu_backgrounds()->get() as $edu_list) {
-        //        echo $edu_list->major;
-        //     }
-        // }
         return view('shared.index_admin')->with('user_detail',$user_detail)->with('documents',$documents);
     }
 
@@ -82,6 +76,24 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+        $user_detail = UserDetail::find($id);
+        $edu_backgrounds = UserDetail::find($id)->edu_backgrounds;
+        $work_experiences = UserDetail::find($id)->work_experience;
+        $documents = UserDetail::find($id)->document;
+        // dd($user_detail);
+        
+        // // foreach ($user_details as $details) {
+        // //     echo $details->full_name;
+        // //     foreach ($details->edu_backgrounds()->get() as $edu_list) {
+        // //        echo $edu_list->major;
+        // //     }
+        // // }
+        return view('admin.show_applicants')->with(compact('user_detail','documents','edu_backgrounds','work_experiences'));
+    }
+
+    public function download($id)
+    {
+        // dd($id);
         $document = Document::find($id);
         $path_to_file = $document->file;
         // dd($path_to_file);

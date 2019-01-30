@@ -24,7 +24,9 @@ Auth::routes();
 Route::group(['middleware' => ['auth' => 'role:admin']], function(){
     Route::resource('admin', 'AdminController');
     Route::get('/admin-dashboard', 'AdminController@index');
-    Route::get('/file/download/{$path}', 'AdminController@download')->name('downloadfile');
+    // Route::get('/file/download/{$path}', 'AdminController@download')->name('downloadfile');
+    Route::resource('download','FileDownloadController');
+    // Route::get('/download/{$id}','AdminController@download')->name('download');
 });
 
 Route::group(['middleware' => ['auth' => 'role:user']], function(){
